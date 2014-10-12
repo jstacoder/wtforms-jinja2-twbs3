@@ -1,0 +1,23 @@
+{# wtform field macros #}
+{% macro render_checkbox(field,inline=false,radio=false) %}
+    {% if not inline %}
+        <div class={% if not radio %}checkbox{% else %}radio{% endif %}>
+    {% endif %}
+            <label{%- if inline %} class="{% if not radio -%}
+            checkbox
+                {%- else -%}
+            radio
+                {%- endif -%}-inline"
+            {%- endif %}>
+                {% if not radio %}{% set ftype = 'checkbox' %}
+                {% else %}{% set ftype = 'radio' %}{% endif %}
+                {{field(type=ftype,value=field.value)}}
+                {{field.label}}
+            </label>
+    {% if not inline %}
+        </div>
+    {% endif %}    
+{% endmacro %}
+
+
+
